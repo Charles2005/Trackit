@@ -15,7 +15,6 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -95,7 +94,7 @@ public class AddNewTasks extends BottomSheetDialogFragment {
             public void onClick(View v) {
                 String text = newTaskText.getText().toString();
                 if(finalIsUpdate){
-                    userDataBase.updateTasks(bundle.getInt("TASK_ID"), text);
+                    userDataBase.updateTasks(bundle.getInt("TO_DO_ID"), text);
                 }else{
                     ToDoModel task = new ToDoModel();
                     task.setTasksList(text);

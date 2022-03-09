@@ -7,13 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
-
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder>{
@@ -77,8 +72,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder>{
         ToDoModel item = toDoList.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("id", item.getId());
-        bundle.putString("task", item.getTasksList());
+        bundle.putInt("TO_DO_ID", item.getId());
+        bundle.putString("TASK_LIST", item.getTasksList());
         AddNewTasks fragment = new AddNewTasks();
         fragment.setArguments(bundle);
         fragment.show(checkListPage.getSupportFragmentManager(), AddNewTasks.TAG);

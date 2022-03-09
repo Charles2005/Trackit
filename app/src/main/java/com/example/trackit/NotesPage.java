@@ -7,19 +7,32 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class NotesPage extends AppCompatActivity {
 
     Button add;
     ImageButton back,notes, alarm,check;
+    private RecyclerView notesRecyclerView;
+    private RecyclerView.Adapter notesAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private UserDataBase userDataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_page);
 
+        // Instance of RecyclerView
+        notesRecyclerView = (RecyclerView) findViewById(R.id.listNotes);
+        notesRecyclerView.setHasFixedSize(true);
+        //RecyclerView Layout
+        layoutManager = new GridLayoutManager(this, 2);
+        // Adapter
+        notesAdapter = new NotesAdapter(userDataBase, NotesPage.this);
+        notesRecyclerView.setAdapter(notesAdapter);
+        // Buttons
         add = findViewById(R.id.btnAddNote);
         back = findViewById(R.id.btnNotesBack);
         notes = findViewById(R.id.notespage);

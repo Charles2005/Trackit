@@ -89,7 +89,7 @@
         app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listNotes"
         android:layout_width="408dp"
         android:layout_height="521dp"

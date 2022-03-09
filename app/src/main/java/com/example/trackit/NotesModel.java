@@ -13,12 +13,6 @@ public class NotesModel {
         this.userId = userId;
     }
 
-    public NotesModel(int id, int userId, String notes) {
-        this.id = id;
-        this.userId = userId;
-        this.notes = notes;
-    }
-
     public int getId() {
         return id;
     }
