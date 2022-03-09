@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Track it</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="forgot">Forgot your password?</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="notes">Notes</string>
+    <string name="alarms">Alarms</string>
+    <string name="checklist">Checklist</string>
+    <string name="addnote">+ Add Note</string>
+    <string name="addalarm">+ Add Alarm</string>
+    <string name="additem">+ Add Item</string>
+    <string name="name">Name</string>
+    <string name="myaccount">My Account</string>
+    <string name="repeat">Repeat</string>
+    <string name="every">Every:</string>
+    <string name="onehour">1 Hour</string>
+    <string name="twohour">2 Hours</string>
+    <string name="fourhour">4 Hours</string>
+    <string name="sixhour">6 Hours</string>
+    <string name="twelvehour">12 Hours</string>
+    <string name="fullhour">24 Hours</string>
+    <string name="sound">Sound:</string>
+</resources>
