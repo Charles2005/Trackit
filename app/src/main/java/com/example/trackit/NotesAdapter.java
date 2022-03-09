@@ -49,6 +49,17 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         return num!=0;
     }
 
+    public void setNotes(List<NotesModel> notesList){
+        this.notesList = notesList;
+        notifyDataSetChanged();
+    }
+    public void deleteNotes(int position){
+        NotesModel item = notesList.get(position);
+        userDataBase.deleteToDo(item.getId());
+        notesList.remove(position);
+        notifyItemRemoved(position);
+    }
+
     @Override
     public int getItemCount() {
         return notesList.size();

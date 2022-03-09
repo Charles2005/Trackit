@@ -1,29 +1,35 @@
 package com.example.trackit;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class NotesItem extends AppCompatActivity {
 
-    ImageButton back, pin,hamburger,notes, alarm,check;
-
+    ImageButton back, pin,notes, alarm,check, delete;
+    EditText txtNItemNote;
+    UserDataBase userDataBase;
+    private NotesAdapter notesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_item);
 
+        userDataBase = new UserDataBase(NotesItem.this);
+        userDataBase.getWritableDatabase();
 
         back= findViewById(R.id.btnNItemBack);
         pin= findViewById(R.id.btnNItemPin);
         notes = findViewById(R.id.notespage);
         alarm = findViewById(R.id.alarmspage);
         check = findViewById(R.id.checkpage);
+        delete = findViewById(R.id.btnNItemDelete);
+        txtNItemNote = findViewById(R.id.txtNItemNote);
 
 
 
@@ -38,11 +44,14 @@ public class NotesItem extends AppCompatActivity {
         pin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String text = txtNItemNote.getText().toString();
+                NotesModel notesModel = new NotesModel();
+                notesModel.setNotes(text);
+                userDataBase.addNotes(notesModel);
                 Intent pins = new Intent(v.getContext(), NotesPage.class);
                 startActivity(pins);
             }
         });
-
 
         notes.setOnClickListener(new View.OnClickListener() {
             @Override

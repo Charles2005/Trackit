@@ -10,28 +10,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NotesPage extends AppCompatActivity {
 
     Button add;
     ImageButton back,notes, alarm,check;
+    private List<NotesModel> notesModelList;
     private RecyclerView notesRecyclerView;
-    private RecyclerView.Adapter notesAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private NotesAdapter notesAdapter;
     private UserDataBase userDataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_page);
-
+        notesModelList = new ArrayList<>();
         // Instance of RecyclerView
         notesRecyclerView = (RecyclerView) findViewById(R.id.listNotes);
         notesRecyclerView.setHasFixedSize(true);
         //RecyclerView Layout
         layoutManager = new GridLayoutManager(this, 2);
+        notesRecyclerView.setLayoutManager(layoutManager);
         // Adapter
         notesAdapter = new NotesAdapter(userDataBase, NotesPage.this);
         notesRecyclerView.setAdapter(notesAdapter);
+        notesAdapter.setNotes(notesModelList);
+
         // Buttons
         add = findViewById(R.id.btnAddNote);
         back = findViewById(R.id.btnNotesBack);
