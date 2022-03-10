@@ -32,11 +32,12 @@ public class UserDataBase extends SQLiteOpenHelper {
     public static final String NOTES_TABLE = "NOTES_TABLE";
     public static final String NOTES_LIST = "NOTES_LIST";
     public static final String NOTES_LIST_ID = "NOTES_LIST_ID";
+    public static final String USER_NOTES_ID = ID;
 
     // QUERY FOR CREATING TABLE
     String USER_TABLE_STATEMENT = "CREATE TABLE " + USER_TABLE + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + USER_EMAIL + " TEXT, " + USER_PASSWORD + " TEXT)";
     String TO_DO_TABLE_STATEMENT = "CREATE TABLE " + TODO_TABLE + " (" + TO_DO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK_LIST + " TEXT, " + TASK_STATUS +  " INTEGER, "+ USER_TO_DO_ID + " INTEGER)";
-    String NOTES_TABLE_STATEMENT = "CREATE TABLE " + NOTES_TABLE + " (" + NOTES_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NOTES_LIST + " TEXT, " + ID + " INTEGER)";
+    String NOTES_TABLE_STATEMENT = "CREATE TABLE " + NOTES_TABLE + " (" + NOTES_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NOTES_LIST + " TEXT, " + USER_NOTES_ID + " INTEGER)";
 
     private SQLiteDatabase db;
 
@@ -154,8 +155,10 @@ public class UserDataBase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(NOTES_LIST, notesModel.getNotes());
-        cv.put(ID, notesModel.getUserId());
+        cv.put(USER_NOTES_ID, notesModel.getUserId());
         long insert = db.insert(NOTES_TABLE,null, cv);
+
+        db.close();
 
     }
 
@@ -164,6 +167,7 @@ public class UserDataBase extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(NOTES_LIST, notes);
         db.update(NOTES_TABLE, cv, NOTES_LIST_ID + "=?", new String[] {String.valueOf(id)});
+        db.close();
     }
 
     @SuppressLint("Range")
@@ -174,14 +178,14 @@ public class UserDataBase extends SQLiteOpenHelper {
         Cursor c = null;
         db.beginTransaction();
         try{
-            c = db.query(NOTES_LIST_ID, null, null, null, null, null, null );
+            c = db.query(NOTES_TABLE, null, null, null, null, null, null );
             if(c != null){
                 if (c.moveToFirst()) {
                     do {
                         NotesModel newNotes = new NotesModel();
                         newNotes.setId(c.getInt(c.getColumnIndex(NOTES_LIST_ID)));
-                        newNotes.setUserId(c.getInt(c.getColumnIndex(ID)));
-                        newNotes.setNotes(c.getString(c.getColumnIndex(TASK_LIST)));
+                        newNotes.setUserId(c.getInt(c.getColumnIndex(USER_NOTES_ID)));
+                        newNotes.setNotes(c.getString(c.getColumnIndex(NOTES_LIST)));
                         returnNotes.add(newNotes);
 
                     } while (c.moveToNext());
@@ -197,6 +201,7 @@ public class UserDataBase extends SQLiteOpenHelper {
     public void deleteNotes(int id ){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(NOTES_TABLE, NOTES_LIST_ID + "=?", new String[] {String.valueOf(id)});
+        db.close();
     }
 
 }

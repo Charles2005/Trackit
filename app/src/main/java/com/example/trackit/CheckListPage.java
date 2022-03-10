@@ -2,13 +2,9 @@ package com.example.trackit;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,7 +67,7 @@ public class CheckListPage extends AppCompatActivity implements DialogCloseListe
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backs = new Intent(v.getContext(), Dashboard.class);
+                Intent backs = new Intent(v.getContext(), NotesPage.class);
                 startActivity(backs);
             }
         });

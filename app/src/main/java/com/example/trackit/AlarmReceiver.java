@@ -16,10 +16,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context,0,i,0);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"Track it")
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"Trackit")
                 .setSmallIcon(R.drawable.alarms)
-                .setContentTitle("Track it Alarm Manager")
-                .setContentText("Alarm")
+                .setContentTitle("Track it Alarm")
+                .setContentText("Time's up")
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

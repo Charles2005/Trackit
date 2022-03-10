@@ -8,29 +8,40 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class NotesItem extends AppCompatActivity {
+public class NotesItem extends AppCompatActivity{
 
-    ImageButton back, pin,notes, alarm,check, delete;
-    EditText txtNItemNote;
+    ImageButton back, pin,notes, alarm,check;
+    EditText txtNItemNote, noteTitle;
     UserDataBase userDataBase;
-    private NotesAdapter notesAdapter;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_item);
-
-        userDataBase = new UserDataBase(NotesItem.this);
-        userDataBase.getWritableDatabase();
-
         back= findViewById(R.id.btnNItemBack);
         pin= findViewById(R.id.btnNItemPin);
         notes = findViewById(R.id.notespage);
         alarm = findViewById(R.id.alarmspage);
         check = findViewById(R.id.checkpage);
-        delete = findViewById(R.id.btnNItemDelete);
         txtNItemNote = findViewById(R.id.txtNItemNote);
+        noteTitle = findViewById(R.id.txtNoteTitle);
+        userDataBase = new UserDataBase(this);
 
+
+        Intent intent = getIntent();
+        id = intent.getIntExtra("id", -1);
+        NotesModel txtNotes = null;
+
+        if (id >= 0){
+            for(NotesModel n: userDataBase.getNotes()){
+                if(n.getId() == id){
+                    txtNotes = n;
+                }
+            }
+            txtNItemNote.setText(txtNotes.getNotes());
+
+        }
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -44,14 +55,21 @@ public class NotesItem extends AppCompatActivity {
         pin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = txtNItemNote.getText().toString();
-                NotesModel notesModel = new NotesModel();
-                notesModel.setNotes(text);
-                userDataBase.addNotes(notesModel);
+                String noteTxt = txtNItemNote.getText().toString();
+                if (id >= 0){
+                    userDataBase.updateNotes(id, noteTxt);
+
+                }else{
+                    NotesModel notesModel = new NotesModel();
+                    notesModel.setNotes(noteTxt);
+                    userDataBase.addNotes(notesModel);
+                }
                 Intent pins = new Intent(v.getContext(), NotesPage.class);
                 startActivity(pins);
+
             }
         });
+
 
         notes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +96,6 @@ public class NotesItem extends AppCompatActivity {
         });
 
 
-
-
-
-
     }
+
 }

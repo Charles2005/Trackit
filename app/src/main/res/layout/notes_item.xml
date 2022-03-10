@@ -19,19 +19,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back" />
 
-    <TextView
+    <EditText
         android:id="@+id/txtNoteTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="10dp"
         android:fontFamily="@font/jost_semi"
+        android:background="#00000000"
         android:text="title"
         android:textColor="@color/fontdark"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.899"
-        app:layout_constraintStart_toEndOf="@+id/btnNotesBack"
+        app:layout_constraintStart_toEndOf="@+id/btnNItemBack"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -75,40 +76,19 @@
             app:srcCompat="@drawable/check" />
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/btnNItemDelete"
-        android:layout_width="48dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
-        android:background="@null"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/trash" />
-
-    <ImageButton
-        android:id="@+id/btnNItemEdit"
-        android:layout_width="52dp"
-        android:layout_height="39dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/edit" />
 
     <ImageButton
         android:id="@+id/btnNItemPin"
         android:layout_width="52dp"
         android:layout_height="39dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="28dp"
         android:background="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
-        app:layout_constraintStart_toEndOf="@+id/btnNItemDelete"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNItemNote"
         app:srcCompat="@drawable/pin" />
 
     <EditText

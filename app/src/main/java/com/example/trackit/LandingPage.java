@@ -1,14 +1,13 @@
 package com.example.trackit;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LandingPage extends AppCompatActivity {
 
@@ -44,7 +43,7 @@ public class LandingPage extends AppCompatActivity {
                     if (!userDataBase.userSearch(txtLogEmailTxt, txtLogPasswordTxt)){
                         Toast.makeText(LandingPage.this, "Account not found. Please sign-up.", Toast.LENGTH_SHORT).show();
                     }else{
-                        Intent logs = new Intent(v.getContext(), Dashboard.class);
+                        Intent logs = new Intent(v.getContext(), NotesPage.class);
                         startActivity(logs);
                     }
 

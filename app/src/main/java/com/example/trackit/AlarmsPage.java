@@ -60,7 +60,7 @@ public class AlarmsPage extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backs = new Intent(v.getContext(), Dashboard.class);
+                Intent backs = new Intent(v.getContext(), NotesPage.class);
                 startActivity(backs);
             }
         });
@@ -150,8 +150,6 @@ public class AlarmsPage extends AppCompatActivity {
 
         Toast.makeText(this, "Alarm set successfully", Toast.LENGTH_SHORT).show();
 
-
-
     }
 
     private void showTimePicker() {
@@ -163,7 +161,7 @@ public class AlarmsPage extends AppCompatActivity {
                 .setTitleText("Select Alarm Time")
                 .build();
 
-        picker.show(getSupportFragmentManager(),"TrackIt");
+        picker.show(getSupportFragmentManager(),"Trackit");
 
         picker.addOnPositiveButtonClickListener(new View.OnClickListener() {
             @Override
@@ -195,10 +193,10 @@ public class AlarmsPage extends AppCompatActivity {
     private void createNotificationChannel() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "TrackIt";
+            CharSequence name = "Trackit Alarm";
             String description = "Channel For Alarm Manager";
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("TrackiIt",name,importance);
+            NotificationChannel channel = new NotificationChannel("Trackit",name,importance);
             channel.setDescription(description);
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);

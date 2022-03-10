@@ -47,31 +47,20 @@
             app:srcCompat="@drawable/check" />
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/btnNotesBack"
-        android:layout_width="39dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="28dp"
-        android:background="@null"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/jost_semi"
         android:text="@string/notes"
         android:textColor="@color/fontdark"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.899"
-        app:layout_constraintStart_toEndOf="@+id/btnNotesBack"
+        app:layout_constraintBottom_toTopOf="@id/listNotes"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -91,13 +80,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listNotes"
-        android:layout_width="408dp"
+        android:layout_width="match_parent"
         android:layout_height="521dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddNote"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.833" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
